@@ -1,10 +1,43 @@
 import Head from "next/head";
+import { Icon } from '@iconify/react'
+import facebookWithCircle from '@iconify-icons/entypo-social/facebook-with-circle'
+import twitterWithCircle from '@iconify-icons/entypo-social/twitter-with-circle'
+import instagramWithCircle from '@iconify-icons/entypo-social/instagram-with-circle'
 
-const MenuItem = function ({ label, divider }) {
+
+
+
+const TextLabel = function ({ label }) {
     return (
-        <li className="text-white font-sans font-semibold text-base leading-tight hover:text-green-500">
-            { divider ? "|" : label}
-        </li>
+        <span className="text-white font-sans font-semibold text-base leading-tight">
+            { label }
+        </span>
+    )
+}
+
+const TextLink = function ({ label }) {
+    return (
+        <TextLabel label={
+            <span className="hover:text-green-500">
+                {label}
+            </span>
+        } />
+    )
+}
+
+const TextHeader = function ({ label }) {
+    return (
+        <TextLabel label={
+            <span className="text-gray-300">
+                {label}
+            </span>
+        } />
+    )
+}
+
+const SocialIcon = function ({ icon }) {
+    return (
+        <Icon icon={icon}  className="w-12 h-12 fill-current text-gray-600 hover:text-green-400"/>
     )
 }
 
@@ -18,15 +51,15 @@ export default function Spotify() {
 
       <main className="w-full font-sans">
           <div className="flex flex-row bg-black items-center justify-between px-16 py-5">
-            <img src="img/spotify-logo-branca-white.png" className="w-25 h-10" />
-            <ul className="flex flex-row gap-8">
-                  <MenuItem label="Premium" />
-                  <MenuItem label="Suporte" />
-                  <MenuItem label="Baixar" />
-                  <MenuItem divider={true} />
-                  <MenuItem label="Inscrever-se" />
-                  <MenuItem label="Entrar" />
-              </ul>
+            <img src="images/spotify/spotify-logo-branca-white.png" className="w-25 h-10" />
+            <div className="invisible gap-8 md:visible md:flex md:flex-row">
+                <TextLink label="Premium" />
+                <TextLink label="Suporte" />
+                <TextLink label="Baixar" />
+                <TextLabel label="|" />
+                <TextLink label="Inscrever-se" />
+                <TextLink label="Entrar" />
+            </div>
           </div>
           <div className="flex flex-col items-center bg-blue-800 p-36 text-green-400 gap-20">
               <p className="text-9xl font-black">Escutar muda</p>
@@ -36,7 +69,7 @@ export default function Spotify() {
                 <p>Milhões de músicas e podcasts para explorar. E nem precisa de cartão de crédito.</p>
                 </div>
                 <div>
-                <button className="rounded-3xl bg-green-400 text-blue-700 uppercase px-8 py-2 top-5">
+                <button className="rounded-3xl bg-green-400 text-blue-700 uppercase px-8 py-2 top-5 hover:scale-110">
                     Baixe o Spotify Free
                 </button>
                 </div>
@@ -45,41 +78,41 @@ export default function Spotify() {
           </div>
 
           
-          <div className="flex flex-row bg-black items-baseline justify-between px-16 py-20">
-            <img src="img/spotify-logo-branca-white.png" className="w-25 h-10" />
-            <div className="flex flex-row gap-20">
-                <ul className="flex flex-col gap-6">
-                    <li className="text-gray-300 font-sans font-semibold text-base leading-tight">EMPRESA</li>
-                    <MenuItem label="Sobre" />
-                    <MenuItem label="Empregos"/>
-                    <MenuItem label="For the Record"/>
-                </ul>
+          <div className="flex flex-col bg-black items-baseline justify-between px-16 py-20 gap-10 md:flex-row">
+            <img src="images/spotify/spotify-logo-branca-white.png" className="w-25 h-10" />
+            <div className="flex flex-col gap-20 md:flex-row">
+                <div className="flex flex-col gap-6">
+                    <TextHeader label="EMPRESA" />
+                    <TextLink label="Sobre" />
+                    <TextLink label="Empregos"/>
+                    <TextLink label="For the Record"/>
+                </div>
                 
 
-                <ul className="flex flex-col gap-6">
-                    <li className="text-gray-300 font-sans font-semibold text-base leading-tight">COMUNIDADES</li>
-                    <MenuItem label="Para artistas" />
-                    <MenuItem label="Desenvolvedores" />
-                    <MenuItem label="Publicidade" />
-                    <MenuItem label="Investidores" />
-                    <MenuItem label="Fornecedores" />
+                <div className="flex flex-col gap-6">
+                    <TextHeader label="COMUNIDADES" />
+                    <TextLink label="Para artistas" />
+                    <TextLink label="Desenvolvedores" />
+                    <TextLink label="Publicidade" />
+                    <TextLink label="Investidores" />
+                    <TextLink label="Fornecedores" />
                     <li></li>
-                </ul>
+                </div>
 
 
-                <ul className="flex flex-col gap-6">
-                    <li className="text-gray-300 font-sans font-semibold text-base leading-tight">LINKS ÚTEIS</li>
-                    <MenuItem label="Suporte"/>
-                    <MenuItem label="Player da Web" />
-                    <MenuItem label="Aplicativo móvel grátis" />
-                </ul>
+                <div className="flex flex-col gap-6">
+                    <TextHeader label="LINKS ÚTEIS" />
+                    <TextLink label="Suporte"/>
+                    <TextLink label="Player da Web" />
+                    <TextLink label="Aplicativo móvel grátis" />
+                </div>
             </div>
             <div>
-                <ul className="flex flex-row gap-2 text-white">
-                    <li>Insta</li>
-                    <li>Twitter</li>
-                    <li>Face</li>
-                </ul>
+                <div className="flex flex-row gap-2">
+                    <SocialIcon icon={twitterWithCircle} />
+                    <SocialIcon icon={instagramWithCircle} />
+                    <SocialIcon icon={facebookWithCircle}/>
+                </div>
             </div>
           </div>
       </main>
